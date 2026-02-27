@@ -1,12 +1,19 @@
-## Hi there 👋
+## Hive Fabric
 
-<!--
+Distributed agent platform composed of:
+- `hive-control-plane` (scheduling, telemetry, task lifecycle)
+- `comb-node` (runtime worker: wasm/docker/llm)
+- `hive-sdk` (shared contracts)
+- `honeycomb` (user-facing app)
+- `apiary-market` (marketplace/tooling)
 
-**Here are some ideas to get you started:**
+### Public Documentation
+Public docs are maintained in this repository under:
+- `docs/public/`
 
-🙋‍♀️ A short introduction - what is your organization all about?
-🌈 Contribution guidelines - how can the community get involved?
-👩‍💻 Useful resources - where can the community find your docs? Is there anything else the community should know?
-🍿 Fun facts - what does your team eat for breakfast?
-🧙 Remember, you can do mighty things with the power of [Markdown](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
--->
+Suggested entry points:
+- `docs/public/index.md`
+- `docs/public/getting-started.md`
+- `docs/public/architecture.md`
+
+Legacy docs repository (`public-docs`) is deprecated.

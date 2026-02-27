@@ -1,0 +1,30 @@
+site_name: HiveFabric Documentation
+site_url: https://yourusername.github.io/hive-docs
+docs_dir: public
+theme:
+  name: material
+  palette:
+    scheme: default
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Concepts: concepts.md
+  - Architecture: architecture.md
+  - Components:
+      - Honeycomb: components/honeycomb.md
+      - Comb Node: components/stinger.md
+      - Runtime: components/wax.md
+      - Control Plane UI: components/beekeeper.md
+      - Honeycomb UI: components/honeybee.md
+  - APIs: apis.md
+  - Executors: executors.md
+  - Roadmap: roadmap.md
+  - FAQ: faq.md
+  - Glossary: glossary.md
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+plugins:
+  - search
