@@ -1,31 +1,37 @@
 # FAQ
 
-## What is Hive?
+## What is HiveFabric?
 
-Hive is a distributed platform for orchestrating agent workloads across user-owned and platform-managed nodes, with IAM-scoped scheduling and marketplace-packaged skills.
+A distributed orchestration platform for AI workloads across heterogeneous devices, with a local-first execution bias and centralized policy/scheduling.
 
-## What is running today?
+## What is production-ready today?
 
-- `hive-control-plane` backend + UI
-- `comb-node` runtime with registration, heartbeat, and execution reporting
-- `apiary-market` service + UI catalog prototype
-- `honeycomb` backend + UI scaffold with role-routed messaging
+Core flows are demoable and UAT-capable, but the platform is still in hardening:
 
-## Is the marketplace live?
+- control-plane scheduling/lifecycle
+- node registration/heartbeat/execution reporting
+- operator UI visibility
+- marketplace catalog and packaging/indexing foundation
 
-An initial Apiary service/UI is available for skill catalog flows. Full production marketplace controls (signatures, policy, economics) are still maturing.
+## Why do docs emphasize both vision and current state?
 
-## Does Wax execute real workloads today?
+Because the project is actively evolving. The docs explicitly separate:
 
-Task execution is wired through control-plane and comb-nodes for UAT-level workflows. Runtime hardening is still in progress.
+- target direction (vision)
+- implemented surfaces (current state)
+- known gaps
 
-## Where should I start?
+## Is Honeycomb the control-plane backend?
 
-- Start control-plane: `hive-control-plane`
-- Start apiary: `apiary-market`
-- Start comb nodes: `comb-node`
-- Start app layer: `honeycomb`
+No. Current control-plane backend is `hive-control-plane/service`.
+`honeycomb` currently refers to runtime modes in the Dart/Flutter repository.
 
-## How do I contribute?
+## Is the marketplace fully complete?
 
-Open a PR in the relevant repo and include a short design note when you change APIs or architecture.
+No. `apiary-market` is functional for catalog and packaging/indexing workflows, but trust/signing/policy maturity is still in progress.
+
+## Where should contributors start?
+
+1. Read `architecture.md` and `components/*`.
+2. Use `getting-started.md` to run the stack.
+3. Make changes in the repository owning that boundary.

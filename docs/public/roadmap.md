@@ -1,26 +1,34 @@
 # Roadmap (Public)
 
-This roadmap reflects the current post-MVP hardening track.
+Date: 2026-02-27
 
-## Next Milestone
+## Vision-Aligned Direction
 
-- Stabilize deterministic task execution for UAT:
-- queue/schedule/run/completion reliability
-- richer task logs (context/input/output) and timing
-- scheduler placement visibility
-- Harden node lease cleanup and stale task expiry.
-- Finalize Apiary prototype catalog behavior and publish flow.
-- Complete Honeycomb app wiring for role-routed messaging and embedded-node operations.
+- resilient distributed scheduling across heterogeneous nodes
+- trustworthy packaging/distribution for agent capabilities
+- measurable autonomy loops with policy controls
 
-## After That
+## Current Execution Tracks
 
-- Persistent task/node storage and retention policies.
-- More complete workflow orchestration (fork/join + retries + policy controls).
-- Signature verification and stronger trust policies for packaged agents.
-- Mobile-first Honeycomb packaging and operational documentation.
+### 1. Reliability Hardening (now)
 
-## Longer Horizon
+- deterministic lifecycle transitions under node churn
+- consistent task logs and timing signals
+- improved scheduler observability in UI
 
-- Marketplace maturity (version resolution, trust metadata, optional economics).
-- Cross-hive federation and broader policy enforcement.
-- Deeper autonomy loop with measurable optimization outcomes.
+### 2. Platform Hardening (next)
+
+- persistent state and retention policies
+- stronger retries/reconciliation policies
+- clearer operational runbooks across repositories
+
+### 3. Trust and Marketplace Maturity
+
+- stronger artifact trust/signing verification
+- packaging/index policy controls
+- clearer version/resolution behavior for reusable artifacts
+
+### 4. Runtime Expansion
+
+- mature desktop/mobile/headless operational documentation for Honeycomb
+- better runtime telemetry and capability-driven placement signals

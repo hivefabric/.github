@@ -11,11 +11,12 @@ nav:
   - Concepts: concepts.md
   - Architecture: architecture.md
   - Components:
-      - Honeycomb: components/honeycomb.md
-      - Comb Node: components/stinger.md
-      - Runtime: components/wax.md
-      - Control Plane UI: components/beekeeper.md
-      - Honeycomb UI: components/honeybee.md
+      - Control Plane Service: components/control-plane-service.md
+      - Control Plane UI: components/control-plane-ui.md
+      - Comb Node Runtime: components/comb-node.md
+      - Hive SDK: components/hive-sdk.md
+      - Apiary Market: components/apiary-market.md
+      - Honeycomb Runtime: components/honeycomb-runtime.md
   - APIs: apis.md
   - Executors: executors.md
   - Roadmap: roadmap.md

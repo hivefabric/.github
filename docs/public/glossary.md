@@ -1,9 +1,10 @@
 # Glossary
 
-- **Hive Control Plane**: Backend service for node registry, task lifecycle, scheduling, and metrics (`hive-control-plane/service`).
-- **Comb Node**: Worker runtime that registers, heartbeats, executes tasks, and reports results (`comb-node`).
-- **Apiary**: Marketplace/packaging layer for skill and agent metadata (`apiary-market`).
-- **Honeycomb App**: User-facing app (backend + UI + embedded node controls) (`honeycomb/service`, `honeycomb/ui`).
-- **Queen Bee**: Platform-scoped orchestration prompt/task path (admin/operator role).
-- **Worker Bee**: User-scoped orchestration path restricted to owned nodes.
-- **Heartbeat**: Periodic lease-renewal signal from a node to control-plane.
+- **Control Plane Service**: `hive-control-plane/service`; scheduler, lifecycle, registry, metrics, streams.
+- **Control Plane UI**: `hive-control-plane-ui`; operational dashboard for node/task state.
+- **Comb Node**: `comb-node`; runtime daemon that executes assigned workloads.
+- **Honeycomb Runtime**: `honeycomb`; cross-platform runtime modes (desktop/mobile/headless).
+- **Hive SDK**: shared contracts and identity/runtime packages (`hive-sdk`, `hive-iam`, `hive-node`).
+- **Apiary Market**: `apiary-market`; catalog plus OCI-oriented packaging/indexing layer.
+- **Lease Heartbeat**: periodic node renewal signal used for online/offline scheduling eligibility.
+- **Task Stream**: websocket event stream for task lifecycle/log updates.

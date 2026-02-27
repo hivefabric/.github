@@ -1,14 +1,15 @@
 # Getting Started
 
-Run a local stack with control-plane backend + UI, Apiary service + UI, and comb nodes.
+This quickstart reflects the current stack and repository boundaries.
 
 ## Prerequisites
 
 - Docker + Docker Compose
-- Rust toolchain (for local service runs)
-- Node.js 20+ (for UIs)
+- Rust toolchain
+- Node.js 20+
+- Dart SDK (optional, for Honeycomb runtime)
 
-## 1. Start Hive Control Plane
+## 1. Start control-plane + UI + multi-node
 
 ```bash
 cd hive-control-plane
@@ -22,33 +23,23 @@ Verify:
 
 ```bash
 curl -fsS http://localhost:8080/healthz
+curl -fsS -H 'x-api-key: dev-hive-key' -H 'x-user-role: admin' http://localhost:8080/api/nodes
 ```
 
-## 2. Start Apiary Service + UI
+## 2. Start Apiary service + UI
 
 ```bash
 cd apiary-market
 docker compose -f docker/docker-compose.yml up -d apiary-service apiary-ui
-```
-
-Verify:
-
-```bash
 curl -fsS http://localhost:8090/healthz
 ```
 
-## 3. Start comb nodes
+## 3. Open UIs
 
-Included in the control-plane multi-node compose stack above.
-
-## 4. Open UIs
-
-- Control plane UI: `http://localhost:5175`
+- Control-plane UI: `http://localhost:5175`
 - Apiary UI: `http://localhost:5176`
 
-## 5. Smoke test task submission
-
-Create a task:
+## 4. Submit a task
 
 ```bash
 curl -X POST http://localhost:8080/api/tasks/create \
@@ -58,8 +49,18 @@ curl -X POST http://localhost:8080/api/tasks/create \
   -d '{"task_id":"00000000-0000-0000-0000-000000000123","agent":"queen-bee-advanced","description":"Plan distributed execution for a hello-world task"}'
 ```
 
-List tasks:
+Then list tasks:
 
 ```bash
 curl -H 'x-api-key: dev-hive-key' -H 'x-user-role: admin' http://localhost:8080/api/tasks
 ```
+
+## 5. Optional: run Honeycomb runtime
+
+```bash
+cd honeycomb
+dart pub get
+dart run headless_main.dart config/honeycomb.example.json
+```
+
+This runtime is not part of the control-plane compose stack by default.

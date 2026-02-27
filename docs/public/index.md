@@ -1,22 +1,41 @@
-# Hive Platform Documentation
+# HiveFabric Public Documentation
 
-Public documentation for the current Hive stack: control-plane scheduling, node execution, marketplace APIs, and Honeycomb app integration.
+This documentation reflects two realities at the same time:
 
-## What works today
+- the long-term vision of HiveFabric as a distributed autonomous agent fabric
+- the current implementation state across active repositories
 
-- `hive-control-plane` service for node registration, task lifecycle, scheduling, usage metrics, and task streams.
-- `comb-node` execution nodes registering via IAM API keys and lease-based heartbeats.
-- `hive-control-plane/ui` for node/task visibility.
-- `apiary-market/service` + `apiary-market/ui` skill catalog prototype.
-- `honeycomb/service` + `honeycomb/ui` app scaffold for login, messaging, embedded node controls, and Telegram bridge.
+## Vision (North Star)
 
-## Start here
+HiveFabric aims to be a local-first distributed platform where autonomous workloads run across heterogeneous user-owned devices, coordinated by a control plane with policy, scheduling, and observability.
+
+## Current State (2026-02-27)
+
+The current platform is functional but still in a hardening phase:
+
+- `hive-control-plane/service` handles node registration, heartbeat, task lifecycle, scheduling, metrics, and streams.
+- `hive-control-plane-ui` exposes operational visibility for nodes and tasks.
+- `comb-node` executes task workloads through supported runtime paths (LLM/WASM/Docker).
+- `hive-sdk` is the contract backbone (`hive-sdk`, `hive-iam`, `hive-node`).
+- `apiary-market` provides a catalog and OCI-oriented packaging/indexing foundation.
+- `honeycomb` provides cross-platform runtime modes (desktop/mobile/headless).
+
+## What Is Not Finished Yet
+
+- durable persistence for core control-plane state
+- production-grade scheduler resilience and reconciliation
+- complete trust/signing policy for marketplace packaging
+- full operational automation for all cross-repo runbooks
+
+## Start Here
 
 - Getting started: `public/getting-started.md`
-- Architecture overview: `public/architecture.md`
+- Architecture: `public/architecture.md`
+- Components by repository: `public/components/*`
 - API reference: `public/apis.md`
 - Roadmap: `public/roadmap.md`
 
-## Scope note
+## Scope
 
-Public docs describe stable and testable contracts. Internal planning, detailed status, and architecture decisions are tracked in `docs/private/`.
+Public docs describe implemented contracts and explicit in-progress work.
+Private planning, investor runbooks, and internal execution notes are in `.github-private`.

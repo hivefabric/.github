@@ -4,7 +4,7 @@ Distributed agent platform composed of:
 - `hive-control-plane` (scheduling, telemetry, task lifecycle)
 - `comb-node` (runtime worker: wasm/docker/llm)
 - `hive-sdk` (shared contracts)
-- `honeycomb` (user-facing app)
+- `honeycomb` (cross-platform runtime modes)
 - `apiary-market` (marketplace/tooling)
 
 ### Public Documentation
@@ -15,5 +15,3 @@ Suggested entry points:
 - `docs/public/index.md`
 - `docs/public/getting-started.md`
 - `docs/public/architecture.md`
-
-Legacy docs repository (`public-docs`) is deprecated.

@@ -1,30 +1,62 @@
 # Architecture Overview
 
-Hive currently runs as a control-plane + node runtime model with IAM-scoped APIs and marketplace-backed skills.
+## Vision Architecture
 
-## Runtime Topology
+Target architecture is a distributed fabric with:
 
-- `hive-control-plane/service`: scheduler, task state manager, node registry, metrics, task streaming.
-- `comb-node`: execution runtime that registers, heartbeats, receives task dispatch, and reports task events.
-- `hive-control-plane/ui`: operator UI for node/task state.
-- `apiary-market/service` + `apiary-market/ui`: skill catalog and OCI-oriented packaging/indexing toolchain.
-- `honeycomb/service` + `honeycomb/ui`: user app layer (auth, role-routed messaging, embedded node controls, loop scaffold).
+- a control plane for policy, scheduling, state, and observability
+- runtime nodes on heterogeneous devices
+- shared contracts and identity boundaries
+- marketplace packaging/distribution for reusable agent capabilities
+
+## Current Architecture (2026-02-27)
+
+### Control and orchestration
+
+- `hive-control-plane/service`
+  - node registry
+  - lease-based heartbeat model
+  - task lifecycle/state transitions
+  - scheduler and dispatch
+  - metrics and websocket task streams
+
+- `hive-control-plane-ui`
+  - node and task operational visibility
+  - telemetry and runtime capability display
+
+### Runtime and execution
+
+- `comb-node`
+  - node registration and heartbeats
+  - capability reporting
+  - LLM/WASM/Docker execution paths
+  - event/log/result reporting back to control plane
+
+- `honeycomb`
+  - runtime client modes (desktop/mobile/headless)
+  - cross-platform node operation surface
+
+### Shared contracts and platform modules
+
+- `hive-sdk`
+  - protocol DTOs and domain contracts
+  - IAM primitives (`hive-iam`)
+  - reusable node SDK (`hive-node`)
+
+- `apiary-market`
+  - catalog service/UI
+  - OCI-oriented packaging/indexing foundation
 
 ## Canonical Contracts
 
-- Node lifecycle: lease-based register + heartbeat + automatic expiry.
+- Node lifecycle: register -> heartbeat lease renewals -> expiry/offline handling.
 - Task lifecycle: `Created -> Queued -> Scheduled -> Running -> Succeeded|Failed|TimedOut -> Retried|Cancelled`.
-- Identity: API keys and roles resolved through IAM; no parallel identity model.
-- Scheduling: control-plane is state-driven and places tasks on eligible nodes by capability and scope.
+- Auth boundary: API-key and role-scoped access through IAM-aligned primitives.
 
-## Execution Boundaries
+## Gap to Vision
 
-- Control-plane owns scheduling and task state transitions.
-- Nodes execute and report completion/events, but do not own scheduler state.
-- Worker-scoped flows are restricted to user-owned nodes; platform flows remain admin-gated.
+The architecture direction is aligned, but current implementation still needs:
 
-## Current Maturity
-
-- Control-plane task execution and status transitions are functional for manual/UAT flows.
-- Marketplace and Honeycomb app are scaffolded and integrated at API level.
-- Persistence remains lightweight/in-memory for core state in current iteration.
+- durable persistence and retention for state
+- stronger scheduler hardening under churn/failure
+- mature trust and signature enforcement for packaged artifacts

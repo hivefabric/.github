@@ -1,20 +1,33 @@
 # Core Concepts
 
-## Comb
-A **comb-node** is a worker runtime that registers with control-plane, reports capabilities, and executes assigned tasks.
+## Fabric
+
+A distributed system of control and execution surfaces coordinating agent workloads across many devices.
 
 ## Control Plane
-The control-plane (`hive-control-plane/service`) owns node registry, task state transitions, scheduling decisions, and execution observability.
 
-## Task Lifecycle
-Tasks follow canonical state transitions in control-plane:
-`Created -> Queued -> Scheduled -> Running -> Succeeded|Failed|TimedOut -> Retried|Cancelled`.
+The authoritative scheduler/state owner implemented in `hive-control-plane/service`.
 
-## Apiary
-Apiary (`apiary-market`) stores declarative agent/skill definitions and OCI packaging/index metadata for marketplace flows.
+## Control Plane UI
 
-## Honeycomb App
-Honeycomb app (`honeycomb/service` + `honeycomb/ui`) is the user-facing layer for auth, dashboard, role-routed prompts, and embedded node controls.
+The operator-facing observability surface in `hive-control-plane-ui`.
 
-## IAM Scoping
-Identity and role checks are centralized in IAM: admin/platform operations route to Queen Bee, user operations route to Worker Bee with ownership boundaries.
+## Node Runtime
+
+A node runtime (`comb-node` or `honeycomb` mode) that advertises capabilities, receives assignments, and returns execution events.
+
+## Contracts Layer
+
+`hive-sdk` defines shared contracts and identity boundaries used by control-plane/runtime modules.
+
+## Marketplace Layer
+
+`apiary-market` provides catalog and packaging/indexing capabilities for reusable agent artifacts.
+
+## Current Principle
+
+System boundaries are explicit:
+
+- control plane owns scheduling and lifecycle state
+- nodes execute workloads and report events
+- shared contracts prevent DTO drift across repositories
