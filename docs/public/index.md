@@ -9,14 +9,14 @@ This documentation reflects two realities at the same time:
 
 HiveFabric aims to be a local-first distributed platform where autonomous workloads run across heterogeneous user-owned devices, coordinated by a control plane with policy, scheduling, and observability.
 
-## Current State (2026-02-27)
+## Current State (2026-03-01)
 
 The current platform is functional but still in a hardening phase:
 
 - `hive-control-plane/service` handles node registration, heartbeat, task lifecycle, scheduling, metrics, and streams.
 - `hive-control-plane-ui` exposes operational visibility for nodes and tasks.
-- `comb-node` executes task workloads through supported runtime paths (LLM/WASM/Docker).
 - `hive-sdk` is the contract backbone (`hive-sdk`, `hive-iam`, `hive-node`).
+- `honeycomb` consumes `hive-node` to execute task workloads through supported runtime paths (LLM/WASM/Docker) on desktop/mobile/headless.
 - `apiary-market` provides a catalog and OCI-oriented packaging/indexing foundation.
 - `honeycomb` provides cross-platform runtime modes (desktop/mobile/headless).
 

@@ -2,9 +2,8 @@
 
 Distributed agent platform composed of:
 - `hive-control-plane` (scheduling, telemetry, task lifecycle)
-- `comb-node` (runtime worker: wasm/docker/llm)
-- `hive-sdk` (shared contracts)
-- `honeycomb` (cross-platform runtime modes)
+- `hive-sdk` (shared contracts + `hive-node` runtime module)
+- `honeycomb` (cross-platform runtime modes consuming `hive-node`)
 - `apiary-market` (marketplace/tooling)
 
 ### Public Documentation

@@ -4,8 +4,8 @@ A node executor is any runtime instance that can accept assignments from control
 
 ## Current executor surfaces
 
-- `comb-node` (primary Rust runtime daemon)
-- `honeycomb` runtime modes (cross-platform runtime client surface)
+- `hive-sdk/packages/hive-node` (primary Rust runtime module)
+- `honeycomb` runtime modes (cross-platform runtime client surface embedding `hive-node`)
 
 ## Node capability model
 

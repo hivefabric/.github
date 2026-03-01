@@ -14,7 +14,7 @@ The operator-facing observability surface in `hive-control-plane-ui`.
 
 ## Node Runtime
 
-A node runtime (`comb-node` or `honeycomb` mode) that advertises capabilities, receives assignments, and returns execution events.
+A node runtime (`hive-sdk/packages/hive-node` embedded in Honeycomb modes) that advertises capabilities, receives assignments, and returns execution events.
 
 ## Contracts Layer
 

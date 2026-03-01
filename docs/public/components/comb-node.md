@@ -1,8 +1,8 @@
-# Comb Node Runtime (`comb-node`)
+# Node Runtime SDK (`hive-sdk/packages/hive-node`)
 
 ## Role
 
-Worker runtime daemon that executes scheduled workloads.
+Worker runtime implementation used by clients (primarily Honeycomb) to execute scheduled workloads.
 
 ## Responsibilities
 
@@ -14,9 +14,9 @@ Worker runtime daemon that executes scheduled workloads.
 ## Local run
 
 ```bash
-cd comb-node
-cargo check
-cargo test
+cd hive-sdk
+cargo check -p hive-node
+cargo test -p hive-node
 ```
 
-Docker stacks are available under `comb-node/docker`.
+For runnable node instances, use `honeycomb` (desktop/mobile/headless or Docker).

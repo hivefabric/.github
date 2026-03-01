@@ -9,7 +9,7 @@ Target architecture is a distributed fabric with:
 - shared contracts and identity boundaries
 - marketplace packaging/distribution for reusable agent capabilities
 
-## Current Architecture (2026-02-27)
+## Current Architecture (2026-03-01)
 
 ### Control and orchestration
 
@@ -26,15 +26,16 @@ Target architecture is a distributed fabric with:
 
 ### Runtime and execution
 
-- `comb-node`
-  - node registration and heartbeats
-  - capability reporting
+- `hive-sdk/packages/hive-node`
+  - canonical node registration/heartbeat SDK
+  - capability and telemetry reporting
   - LLM/WASM/Docker execution paths
-  - event/log/result reporting back to control plane
+  - event/log/result reporting primitives used by clients
 
 - `honeycomb`
   - runtime client modes (desktop/mobile/headless)
-  - cross-platform node operation surface
+  - consumes `hive-node` from `hive-sdk`
+  - adds cross-platform operational UX (splash connection gate, retry, LAN host override/discovery)
 
 ### Shared contracts and platform modules
 
