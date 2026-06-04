@@ -1,63 +1,64 @@
 # Architecture Overview
 
-## Vision Architecture
+## System Flow
 
-Target architecture is a distributed fabric with:
+```text
+Customer or Hive app
+        |
+        v
+hive-tenant-gateway
+        |
+        v
+honeycomb control plane
+        |
+        +--> hive-ledger
+        |
+        +--> comb nodes via hive-sdk / Wax native runtime
+```
 
-- a control plane for policy, scheduling, state, and observability
-- runtime nodes on heterogeneous devices
-- shared contracts and identity boundaries
-- marketplace packaging/distribution for reusable agent capabilities
+## Core Services
 
-## Current Architecture (2026-03-01)
+### `hive-tenant-gateway`
 
-### Control and orchestration
+The public multi-tenant BYO-LLM gateway. It authenticates tenants, stores tenant LLM provider configuration, exposes MCP-equivalent tools, can run a gateway-managed orchestration loop, and forwards work to Honeycomb.
 
-- `hive-control-plane/service`
-  - node registry
-  - lease-based heartbeat model
-  - task lifecycle/state transitions
-  - scheduler and dispatch
-  - metrics and websocket task streams
+### `honeycomb`
 
-- `hive-control-plane-ui`
-  - node and task operational visibility
-  - telemetry and runtime capability display
+The Rust control plane. It owns node registration, heartbeat leases, task creation, scheduling, sensitivity routing, task lifecycle, streaming, metrics, and API documentation.
 
-### Runtime and execution
+### `hive-ledger`
 
-- `hive-sdk/packages/hive-node`
-  - canonical node registration/heartbeat SDK
-  - capability and telemetry reporting
-  - LLM/WASM/Docker execution paths
-  - event/log/result reporting primitives used by clients
+The append-only credit ledger. It records debit, refund, credit, reserve, and release events with idempotency keys and derives balances from immutable events.
 
-- `honeycomb`
-  - runtime client modes (desktop/mobile/headless)
-  - consumes `hive-node` from `hive-sdk`
-  - adds cross-platform operational UX (splash connection gate, retry, LAN host override/discovery)
+### `hive-sdk`
 
-### Shared contracts and platform modules
+The shared Rust backbone. It contains protocol/domain types, IAM primitives, frontier LLM adapters, `hive-node`, the YAML catalog parser, and the `hive-bench` runner.
 
-- `hive-sdk`
-  - protocol DTOs and domain contracts
-  - IAM primitives (`hive-iam`)
-  - reusable node SDK (`hive-node`)
+### `hive-app`
 
-- `apiary-market`
-  - catalog service/UI
-  - OCI-oriented packaging/indexing foundation
+The user app workspace:
+
+- `web/` is the React/Vite web app.
+- `native/` is the Wax Dart/Flutter runtime and native shell.
+
+Each surface has its own release workflow.
+
+### `honeycomb-ui`
+
+The operator dashboard for Honeycomb cluster visibility.
 
 ## Canonical Contracts
 
 - Node lifecycle: register -> heartbeat lease renewals -> expiry/offline handling.
-- Task lifecycle: `Created -> Queued -> Scheduled -> Running -> Succeeded|Failed|TimedOut -> Retried|Cancelled`.
-- Auth boundary: API-key and role-scoped access through IAM-aligned primitives.
+- Task lifecycle: created/queued/scheduled/running -> succeeded/failed/timed out/cancelled.
+- Capability routing: model and agent capabilities are expressed as OASF-style URNs.
+- Tenant boundary: tenant identity comes from gateway bearer auth and is stamped before dispatch.
+- Accounting: ledger writes use idempotency keys to prevent double billing.
 
-## Gap to Vision
+## Current Gaps
 
-The architecture direction is aligned, but current implementation still needs:
-
-- durable persistence and retention for state
-- stronger scheduler hardening under churn/failure
-- mature trust and signature enforcement for packaged artifacts
+- Durable scheduling/state and reconciliation are still being hardened.
+- Full NATS/JetStream bus migration is not complete.
+- Gemini and Bedrock adapters remain future gateway/SDK work.
+- Ledger reserve-before-dispatch is not fully enforced end-to-end.
+- Production signing, attestation, and policy enforcement are still maturing.

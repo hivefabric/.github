@@ -1,41 +1,37 @@
 # HiveFabric Public Documentation
 
-This documentation reflects two realities at the same time:
+This documentation tracks the public architecture and current implementation state of HiveFabric.
 
-- the long-term vision of HiveFabric as a distributed autonomous agent fabric
-- the current implementation state across active repositories
+## Current State
 
-## Vision (North Star)
+As of 2026-06-03, the active public organization repositories are:
 
-HiveFabric aims to be a local-first distributed platform where autonomous workloads run across heterogeneous user-owned devices, coordinated by a control plane with policy, scheduling, and observability.
+- `honeycomb` - Rust control plane for node registration, scheduling, task lifecycle, streaming, metrics, and API docs.
+- `hive-tenant-gateway` - multi-tenant BYO-LLM gateway and customer-facing orchestration/API surface.
+- `hive-mcp-gateway` - MCP tool interface library and stdio server.
+- `hive-ledger` - event-sourced credit accounting service.
+- `hive-sdk` - shared Rust contracts, IAM, frontier adapters, comb runtime SDK, model catalog parser, and benchmark runner.
+- `hive-models` - YAML model, agent, and benchmark catalog.
+- `hive-app` - user application workspace split into `web/` and `native/`.
+- `honeycomb-ui` - operator dashboard for the Honeycomb control plane.
+- `hivefabric.github.io` - public website.
+- `.github` - public organization profile and documentation.
 
-## Current State (2026-03-01)
+The former `hive-demos` and `hive-gateway-tests` repositories were removed on 2026-06-03. Demo and integration-test work should now live in the owning service/app repositories or the SDK benchmark runner.
 
-The current platform is functional but still in a hardening phase:
+## Vision
 
-- `hive-control-plane/service` handles node registration, heartbeat, task lifecycle, scheduling, metrics, and streams.
-- `hive-control-plane-ui` exposes operational visibility for nodes and tasks.
-- `hive-sdk` is the contract backbone (`hive-sdk`, `hive-iam`, `hive-node`).
-- `honeycomb` consumes `hive-node` to execute task workloads through supported runtime paths (LLM/WASM/Docker) on desktop/mobile/headless.
-- `apiary-market` provides a catalog and OCI-oriented packaging/indexing foundation.
-- `honeycomb` provides cross-platform runtime modes (desktop/mobile/headless).
-
-## What Is Not Finished Yet
-
-- durable persistence for core control-plane state
-- production-grade scheduler resilience and reconciliation
-- complete trust/signing policy for marketplace packaging
-- full operational automation for all cross-repo runbooks
+HiveFabric is a local-first distributed AI fabric where autonomous workloads run across heterogeneous user-owned devices, coordinated by a control plane with policy, scheduling, observability, and transparent accounting.
 
 ## Start Here
 
 - Getting started: `public/getting-started.md`
 - Architecture: `public/architecture.md`
+- Release notes: `public/release-notes.md`
 - Components by repository: `public/components/*`
 - API reference: `public/apis.md`
 - Roadmap: `public/roadmap.md`
 
 ## Scope
 
-Public docs describe implemented contracts and explicit in-progress work.
-Private planning, investor runbooks, and internal execution notes are in `.github-private`.
+Public docs describe implemented contracts and explicit in-progress work. Private planning, investor runbooks, and internal execution notes live in `.github-private`.

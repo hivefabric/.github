@@ -10,13 +10,17 @@ nav:
   - Getting Started: getting-started.md
   - Concepts: concepts.md
   - Architecture: architecture.md
+  - Release Notes: release-notes.md
   - Components:
-      - Control Plane Service: components/control-plane-service.md
+      - Honeycomb Control Plane: components/control-plane-service.md
       - Control Plane UI: components/control-plane-ui.md
-      - Comb Node Runtime: components/comb-node.md
+      - Hive App: components/hive-app.md
+      - Tenant Gateway: components/hive-tenant-gateway.md
+      - MCP Gateway: components/hive-mcp-gateway.md
+      - Hive Ledger: components/hive-ledger.md
+      - Hive Models: components/hive-models.md
       - Hive SDK: components/hive-sdk.md
-      - Apiary Market: components/apiary-market.md
-      - Honeycomb Runtime: components/honeycomb-runtime.md
+      - Comb Node Runtime: components/comb-node.md
   - APIs: apis.md
   - Executors: executors.md
   - Roadmap: roadmap.md
