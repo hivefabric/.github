@@ -1,5 +1,12 @@
 # Public Release Notes
 
+## 2026-06-06 - Honeycomb single-backend merge
+
+- Embedded the tenant gateway and ledger into `honeycomb`, so the default local backend is now one process instead of three.
+- Moved the shared MCP gateway code into the `hive-sdk` root package so Honeycomb can serve the tool surface directly.
+- Updated the operator UI service-status view and local docs to describe the merged backend and embedded health paths.
+- Prepared the retired `hive-tenant-gateway`, `hive-ledger`, and `hive-mcp-gateway` repositories for removal after the cleanup push.
+
 ## 2026-06-03 - Repository consolidation and documentation reset
 
 - Removed obsolete remote repositories: `hive-demos` and `hive-gateway-tests`.
